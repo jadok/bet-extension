@@ -1,9 +1,8 @@
 {
-    "name": "TS/R/WP Chrome Extension",
+    "name": "Uni sur le sofa",
     "version": "0.0.1",
     "manifest_version": 2,
-    "description": "Boilerplate for a Chrome extension with TypeScript, React, and Webpack.",
-    "homepage_url": "https://duo.com/labs",
+    "description": "Unibet bets sur sofascoer",
     "icons": {
       "16": "icons/icon16.png",
       "48": "icons/icon48.png",
@@ -21,16 +20,27 @@
       "persistent": true
     },
     "permissions": [
-      "https://*/*"
+      "https://*/*",
+      "storage"
     ],
     "content_security_policy": "default-src 'self';",
     "content_scripts": [
       {
         "matches": [
-          "https://*/*"
+          "http://*.sofascore.com/*",
+          "https://*.sofascore.com/*"
         ],
         "js": [
-          "js/content.js"
+          "js/sofascore.js"
+        ]
+      },
+      {
+        "matches": [
+          "http://*.unibet.fr/*",
+          "https://*.unibet.fr/*"
+        ],
+        "js": [
+          "js/unibet.js"
         ]
       }
     ]
