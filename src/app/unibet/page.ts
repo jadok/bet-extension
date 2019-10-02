@@ -5,8 +5,8 @@ import { ABetPage } from '../../definition/ABetPage';
 
 export class UnibetPage extends ABetPage {
   bettingHeader = (element: Element) => {
-    const bettingDate = element.querySelector('.cell-header .datetime .date').innerHTML;
-    const bettingTime = element.querySelector('.cell-header .datetime .time').innerHTML;
+    const bettingDate = element.querySelector('.cell-header .datetime .date').innerHTML.trim();
+    const bettingTime = element.querySelector('.cell-header .datetime .time').innerHTML.trim();
     return {
       id: element.querySelector('.cell-header .reference').innerHTML.trim().split(' ')[1],
       date: convertFullDashFormat(bettingDate, bettingTime),
@@ -19,9 +19,9 @@ export class UnibetPage extends ABetPage {
     const res = Array.from(element.querySelectorAll('.cell-content > .row'))
       .map((betElement) => {
         var status = betElement.querySelector('.status').className.replace('status ', '').replace('icon-', '');
-        var date = betElement.querySelector('.details .date.line').innerHTML.split(' ')[0];
+        var date = betElement.querySelector('.details .date.line').innerHTML.trim().split(' ')[0];
         var odd = parseFloat(betElement.querySelector('.price').innerHTML);
-        var peoples = betElement.querySelector('.details .event.line').innerHTML.split('v>')[1].trim();
+        var peoples = betElement.querySelector('.details .event.line').innerHTML.trim().split('v>')[1].trim();
         var sport = betElement.querySelector('.icon-sport').className.split(' ').find((elem) => elem.indexOf('SPORT') !== -1).replace('SPORT_', '').toLowerCase()
         var betData = {
           status,
