@@ -1,9 +1,3 @@
-const data = [
-  'Tatishvili A.-Sakkari M.', 
-  'Swiatek I. - Janicijevic S.',
-  'Rodina E.-Keys M.'
-]
-
 const matchData = (datas: string[], people1, people2) => {
   return !!datas.find((match) => (
     match === (people1 + '-' + people2)
