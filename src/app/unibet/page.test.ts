@@ -4,10 +4,10 @@
 
 import { JSDOM } from 'jsdom';
 const fs = require('fs');
-import { UnibetPage } from './page'
+import { UnibetExport } from './page'
 
-declare var window: any;
-declare var document: any;
+declare const window: any;
+declare const document: any;
 
 describe('updateMsg', function () {
   // beforeAll(function () {
@@ -23,7 +23,7 @@ describe('updateMsg', function () {
   // set the global window and document objects using JSDOM
   // global is a node.js global object
   document.body.innerHTML = html;
-  var u = new UnibetPage(window, document);
+  const u = new UnibetExport(window, document);
   it('Check page', () => {
     expect(u.check()).toBeTruthy();
   })
@@ -49,6 +49,12 @@ describe('updateMsg', function () {
 
   it('Get data Data', () => {
     const footer = u.bettingBets(u.data[0]);
+    expect(true).toBeTruthy();
+  })
+
+  it('check full', () => {
+    const footer = u.exec();
+    console.log(footer[0]);
     expect(true).toBeTruthy();
   })
 });

@@ -1,6 +1,6 @@
-import { IBettingData } from "./IBettingData";
+import { IBettingData } from "../IBettingData";
 
-export class ABetPage {
+export class ABetExport {
   data: NodeListOf<Element>;
   window: any;
   document: any;
