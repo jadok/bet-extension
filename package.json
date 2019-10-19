@@ -4,24 +4,46 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "start": "webpack --watch",
+    "build": "webpack -p"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "devDependencies": {
     "@types/chrome": "0.0.75",
+    "@types/jest": "^24.0.18",
+    "@types/jsdom": "^12.2.4",
     "@types/react": "^16.7.8",
     "@types/react-dom": "^16.0.11",
     "css-loader": "^1.0.1",
+    "jest": "^24.9.0",
+    "jest-environment-jsdom": "^24.9.0",
+    "jest-environment-jsdom-global": "^1.2.0",
+    "jsdom": "^15.1.1",
     "style-loader": "^0.23.1",
+    "ts-jest": "^24.1.0",
     "ts-loader": "^5.3.1",
     "typescript": "^3.1.6",
     "webpack": "^4.26.1",
-    "webpack-cli": "^3.1.2"
+    "webpack-cli": "^3.3.2"
   },
   "dependencies": {
     "react": "^16.6.3",
     "react-dom": "^16.6.3"
+  },
+  "jest": {
+    "roots": [
+      "<rootDir>/src"
+    ],
+    "testMatch": [
+      "**/__tests__/**/*.tsx?",
+      "**/?(*.)+(spec|test).tsx?"
+    ],
+    "testEnvironment": "jest-environment-jsdom-global",
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    }
   }
 }
