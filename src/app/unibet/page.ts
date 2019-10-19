@@ -1,9 +1,9 @@
 import { currencyToNumber } from '../utils/number';
 import { convertFullDashFormat, convertShortDashFormat } from '../utils/date';
 import { IBettingData } from '../../definition/IBettingData';
-import { ABetPage } from '../../definition/ABetPage';
+import { ABetExport } from '../../definition/export/ABetExport';
 
-export class UnibetPage extends ABetPage {
+export class UnibetExport extends ABetExport {
   bettingHeader = (element: Element) => {
     const bettingDate = element.querySelector('.cell-header .datetime .date').innerHTML.trim();
     const bettingTime = element.querySelector('.cell-header .datetime .time').innerHTML.trim();
@@ -18,12 +18,12 @@ export class UnibetPage extends ABetPage {
     let sumOdds = 1;
     const res = Array.from(element.querySelectorAll('.cell-content > .row'))
       .map((betElement) => {
-        var status = betElement.querySelector('.status').className.replace('status ', '').replace('icon-', '');
-        var date = betElement.querySelector('.details .date.line').innerHTML.trim().split(' ')[0];
-        var odd = parseFloat(betElement.querySelector('.price').innerHTML);
-        var peoples = betElement.querySelector('.details .event.line').innerHTML.trim().split('v>')[1].trim();
-        var sport = betElement.querySelector('.icon-sport').className.split(' ').find((elem) => elem.indexOf('SPORT') !== -1).replace('SPORT_', '').toLowerCase()
-        var betData = {
+        const status = betElement.querySelector('.status').className.replace('status ', '').replace('icon-', '');
+        const date = betElement.querySelector('.details .date.line').innerHTML.trim().split(' ')[0].split('<')[0];
+        const odd = parseFloat(betElement.querySelector('.price').innerHTML);
+        const peoples = betElement.querySelector('.details .event.line').innerHTML.split('v>')[1].trim();
+        const sport = betElement.querySelector('.icon-sport').className.split(' ').find((elem) => elem.indexOf('SPORT') !== -1).replace('SPORT_', '').toLowerCase()
+        const betData = {
           status,
           odd,
           peoples,

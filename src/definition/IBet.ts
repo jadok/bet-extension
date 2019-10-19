@@ -1,3 +1,6 @@
+/**
+ * Betting data about a match.
+ */
 export interface IBet {
   odd: number;
   status: string;

@@ -1,5 +1,8 @@
 import { IBet } from './IBet'
 
+/**
+ * Total betting data (simple or combined bet).
+ */
 export interface IBettingData {
   id: string;
   type: string;
