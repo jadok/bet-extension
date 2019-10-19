@@ -5,23 +5,13 @@
 import { JSDOM } from 'jsdom';
 const fs = require('fs');
 import { SofascoreShow } from './page'
+import { TennisTournamentManager } from './tournament-event/TennisTournamentmanager';
 
 declare const window: any;
 declare const document: any;
 
-describe('updateMsg', function () {
-  // beforeAll(function () {
-  //   // __dirname is a Node.js global object
-  //   // https://nodejs.org/api/globals.html
-
-  //   const html = fs.readFileSync('./fixtures/sample-unibet.html').toString();
-  //   // set the global window and document objects using JSDOM
-  //   // global is a node.js global object
-  //   document.body.innerHTML = html;
-  // })
+describe('sofascore - tennis', function () {
   const html = fs.readFileSync('./fixtures/sample-sofascore-tennis.html').toString();
-  // set the global window and document objects using JSDOM
-  // global is a node.js global object
   document.body.innerHTML = html;
 
   const bets = [
@@ -43,6 +33,13 @@ describe('updateMsg', function () {
           peoples: 'Klizan, M - Ehrat, S',
           sport: 'tennis',
           date: '2019-09-13T00:00:00.000Z'
+        },
+        {
+          status: 'pending',
+          odd: 1.3,
+          peoples: 'Fognini F. - Khachanov K.',
+          sport: 'tennis',
+          date: '2019-09-14T00:00:00.000Z'
         }
       ],
       sumOdds: 1.2423,
@@ -56,11 +53,28 @@ describe('updateMsg', function () {
 
   it('Check page', () => {
     expect(u.check()).toBeTruthy();
-    console.log(u.data[0].querySelector('.cell.js-event-list-tournament-header .cell__section--main').innerHTML);
   })
 
-  it('Check data', () => {
-    expect(u.check()).toBeTruthy();
+  it('Check header', () => {
+    const elem = u.data[0];
+    const header = u.getTournamentHeader(elem);
+    expect(header.category).toEqual('ATP');
+    expect(header.name).toEqual('Shanghai, China');
   })
 
+  it('Check execManager', () => {
+    const elem = u.data[0];
+    const header = u.getTournamentHeader(elem);
+    const manager = new TennisTournamentManager();
+    const gamesWatched = [];
+    const didAdd = u.execManager(manager, header, u.data[0], bets, gamesWatched)
+    expect(didAdd).toBeTruthy();
+  })
+
+  it('check exec', () => {
+    u.bets = bets;
+    const res = u.exec();
+    expect(res.length).toEqual(1);
+  })
 });
+

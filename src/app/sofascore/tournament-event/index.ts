@@ -1,4 +1,4 @@
-import TennisEvent from './TennisEvent'
+import { TennisTournamentManager } from './TennisTournamentmanager'
 export default [
-  TennisEvent
+  TennisTournamentManager
 ]
