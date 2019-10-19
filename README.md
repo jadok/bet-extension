@@ -1,4 +1,4 @@
-# Chrome extension
+# Bet Extension
 
 This is a chrome extension that find your bets from [unibet](https://www.unibet.com) to _follow_ the score on [sofascore](https://www.sofascore.com).
 This extension is not made to be publish in the store, later more cool stuff will be done to analyze your own betting stats from your server.
