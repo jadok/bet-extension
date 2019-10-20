@@ -12,10 +12,8 @@ interface state {
 }
 
 const listener = (message, sender, sendResponse, cbState) => {
-  alert('DATA TO SEND');
-  alert(JSON.stringify(message.data));
   switch (message.type) {
-    case 'unibet': {
+    case 'print_bets': {
       cbState({ bets: message.data || [] });
     }
   }
@@ -28,11 +26,10 @@ class Popup extends React.Component<{}, state> {
       bets: [],
       filter: ''
     }
-    chrome.runtime.onMessage.addListener(this.chromeListener);
+    console.log('Construct');
   }
 
   chromeListener = (message, sender, sendResponse) => {
-    console.log('Listener definition')
     listener(
       message,
       sender,
@@ -43,13 +40,14 @@ class Popup extends React.Component<{}, state> {
 
   componentDidMount() {
     const that = this
-    chrome.storage.local.get(['bets'], (result) => {
+    chrome.storage.sync.get(['bets'], (result) => {
       that.setState({ bets: result.bets || [] });
+      window.chrome.runtime.onMessage.addListener(this.chromeListener);
     });
   }
 
   componentWillUnmount() {
-    chrome.runtime.onMessage.removeListener(this.chromeListener);
+    window.chrome.runtime.onMessage.removeListener(this.chromeListener);
   }
 
   render() {
@@ -58,8 +56,7 @@ class Popup extends React.Component<{}, state> {
         <h1>{ chrome.i18n.getMessage("l10nHello") }</h1>
         <h2 style={{color: 'green'}}>Nbr bets to add: {this.state.bets.length}</h2>
         <ol>
-          {/*this.state.bets.map((bet) => <Bet bet={bet} />)*/}
-          {JSON.stringify(this.state.bets)}
+          {this.state.bets.map((bet) => <Bet bet={bet} />)}
         </ol>
       </div>
     )

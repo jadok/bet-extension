@@ -5,11 +5,11 @@ details {
 }
 
 details p {
-  padding: 2rem;
+  padding: 1rem;
 }
 
 summary {
-  padding: 2rem;
+  padding: 1rem;
   background-color: #9fb6ce;
   border: 1px solid #9fb6ce;
   outline: none;
@@ -28,9 +28,3 @@ details[open] summary {
 details[open] {
   background: #fff;
 }
-
-section {
-  max-width: 80%;
-  width: 100%;
-}
-

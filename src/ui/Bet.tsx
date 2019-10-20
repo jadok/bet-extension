@@ -12,13 +12,12 @@ interface IProps {
 const Bets: React.SFC<IProps> = ({ bet, className }) => (
   <details {...className}>
     <summary>
-      <span>[{bet.id}]</span>
+      <strong>[{bet.id}]</strong>
       <span>[{bet.type}]</span>
-      <span>[{bet.date}]</span>
+      <span style={{ float: 'right', display: 'inline-block' }}>{(new Date(bet.date)).toDateString()}</span>
     </summary>
     <p>
-      {JSON.stringify(bet)}
-      {/*bet.bets.map((betGame) => <BetGame betGame={betGame} />)*/}
+      {bet.bets.map((betGame) => <BetGame betGame={betGame} />)}
     </p>
   </details>
 );

@@ -29,19 +29,26 @@ export class TennisTournamentManager implements ITournamentManager {
     let didAddEvent = false;
     tournamentEventElems.forEach((element) => {
       const names = element.querySelectorAll('.cell__section--main.s-tennisCell .cell__content');
-      const isMatch = matchData(
+      let isMatch = matchData(
         tennisData,
         normalizeAccent(names[0].innerHTML.trim()),
         normalizeAccent(names[1].innerHTML.trim())
       );
       if (isMatch) {
-        const favoriteElement = element.querySelector('.cell__content.event-action__content > span');
-        gamesWatched.push({
-          name: names[0].innerHTML.trim() + '-' + names[1].innerHTML.trim(),
-          elem: favoriteElement,
-          id: Array.from(names).join('/')
-        })
+        const favoriteElement:HTMLElement = element.querySelector('.cell__content.event-action__content > span');
+        if (Array.from(favoriteElement.classList).includes('following')) {
+          isMatch = false;
+        }
+        if (isMatch) {
+          favoriteElement.click();
+          gamesWatched.push({
+            name: names[0].innerHTML.trim() + '-' + names[1].innerHTML.trim(),
+            elem: favoriteElement,
+            id: Array.from(names).join('/')
+          })
+        }
       }
+
       didAddEvent = didAddEvent || isMatch;
     });
     return didAddEvent;
