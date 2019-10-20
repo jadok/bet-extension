@@ -31,15 +31,15 @@ Top priority (v1):
 
 - clean code / create class / abstraction
   - unibet - DONE
-  - sofascore - IN PROGRESS
-  - background
-- handle different sports (only work for tennis at the moment)
-- display some stats about your bets from the extension
+  - sofascore - DONE
+  - popup - DONE
+- display some stats about your bets from the extension - DONE
 - graphical animation to inform that data has been stored (on unibet)
 - a more user friendly display to inform the bet followed (on sofascore)
 
 Second priority (v2):
 
+- handle different sports (only work for tennis at the moment)
 - remember bets that has been register to not re do the actions (storing and follow)
 - directly go to sofascore page when it found bets not register
 
