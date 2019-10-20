@@ -4,4 +4,7 @@ body {
 
 .popup-padded {
   padding: 1rem;
+  & > ol {
+    padding-left: 0;
+  }
 }

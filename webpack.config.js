@@ -9,7 +9,7 @@ module.exports = {
     unibet: './src/app/unibet.ts',
     sofascore: './src/app/sofascore.ts',
     background: './src/app/background.ts',
-    popup: './src/ui/popup.tsx',
+    popup: './src/ui/Popup.tsx',
   },
 
   output: {
