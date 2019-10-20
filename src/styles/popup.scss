@@ -1,0 +1,10 @@
+body {
+  width: 100vw;
+}
+
+.popup-padded {
+  padding: 1rem;
+  & > ol {
+    padding-left: 0;
+  }
+}

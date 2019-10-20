@@ -2,7 +2,6 @@
  * @jest-environment jsdom
  */
 
-import { JSDOM } from 'jsdom';
 const fs = require('fs');
 import { UnibetExport } from './page'
 
@@ -10,18 +9,7 @@ declare const window: any;
 declare const document: any;
 
 describe('updateMsg', function () {
-  // beforeAll(function () {
-  //   // __dirname is a Node.js global object
-  //   // https://nodejs.org/api/globals.html
-
-  //   const html = fs.readFileSync('./fixtures/sample-unibet.html').toString();
-  //   // set the global window and document objects using JSDOM
-  //   // global is a node.js global object
-  //   document.body.innerHTML = html;
-  // })
   const html = fs.readFileSync('./fixtures/sample-unibet.html').toString();
-  // set the global window and document objects using JSDOM
-  // global is a node.js global object
   document.body.innerHTML = html;
   const u = new UnibetExport(window, document);
   it('Check page', () => {
@@ -54,7 +42,6 @@ describe('updateMsg', function () {
 
   it('check full', () => {
     const footer = u.exec();
-    console.log(footer[0]);
     expect(true).toBeTruthy();
   })
 });

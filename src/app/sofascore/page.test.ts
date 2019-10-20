@@ -2,7 +2,6 @@
  * @jest-environment jsdom
  */
 
-import { JSDOM } from 'jsdom';
 const fs = require('fs');
 import { SofascoreShow } from './page'
 import { TennisTournamentManager } from './tournament-event/TennisTournamentmanager';

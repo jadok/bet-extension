@@ -5,8 +5,8 @@ import { ABetExport } from '../../definition/export/ABetExport';
 
 export class UnibetExport extends ABetExport {
   bettingHeader = (element: Element) => {
-    const bettingDate = element.querySelector('.cell-header .datetime .date').innerHTML;
-    const bettingTime = element.querySelector('.cell-header .datetime .time').innerHTML;
+    const bettingDate = element.querySelector('.cell-header .datetime .date').innerHTML.trim();
+    const bettingTime = element.querySelector('.cell-header .datetime .time').innerHTML.trim();
     return {
       id: element.querySelector('.cell-header .reference').innerHTML.trim().split(' ')[1],
       date: convertFullDashFormat(bettingDate, bettingTime),

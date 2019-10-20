@@ -1,0 +1,30 @@
+
+details {
+  margin-bottom: .5rem;
+  width: 100%;
+}
+
+details p {
+  padding: 1rem;
+}
+
+summary {
+  padding: 1rem;
+  background-color: #9fb6ce;
+  border: 1px solid #9fb6ce;
+  outline: none;
+}
+
+summary:hover,
+summary:focus {
+  border: 1px solid lightslategray;
+}
+
+details[open] summary {
+  background-color: lightslategray;
+  border: 1px solid lightslategray;
+}
+
+details[open] {
+  background: #fff;
+}
